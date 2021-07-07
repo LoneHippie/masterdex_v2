@@ -1,6 +1,10 @@
 @import '../styles/variables';
 
 .grid {
+    @include layout;
+    
+    overflow-y: scroll;
+
     display: grid;
     grid-template-columns: repeat(7, auto);
     @include respond(laptop-1) {

@@ -1,9 +1,9 @@
 @import '../styles/variables';
 
 .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
+    @include layout;
+    
+    overflow-y: scroll;
     background: rgba($color-pokedex, 0.8);
 
     & > div {

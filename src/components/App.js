@@ -2,13 +2,14 @@ import React, { useState, useRef } from 'react';
 import pokeapi from '../api/pokeapi';
 
 import Navbar from './Navbar';
-import Layout from './Layout';
 import CardGrid from './CardGrid';
 import GridLoading from './GridLoading';
 
 import '../styles/base.scss';
 
 const App = () => {
+
+    //fix weird padding-top inconsistency between local and deploy
 
     const [ pokemon, setPokemon ] = useState([]);
     const [ gridActive, setGridActive ] = useState(true);
@@ -61,7 +62,7 @@ const App = () => {
             if (gridActive) {
                 setGridActive(false);
             };
-            
+
             resetRef.current = true;
             setPokemon([]);
         }
@@ -73,17 +74,15 @@ const App = () => {
                 typeSearch={searchHandlers.typeSearch}
                 genSearch={searchHandlers.genSearch}
             />
-            <Layout>
-                {
-                    gridActive ? (
-                        <CardGrid 
-                            pokemon={pokemon}
-                        />
-                    ) : (
-                        <GridLoading />
-                    )
-                }
-            </Layout>
+            {
+                gridActive ? (
+                    <CardGrid 
+                        pokemon={pokemon}
+                    />
+                ) : (
+                    <GridLoading />
+                )
+            }
         </>
     )
 };

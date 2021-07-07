@@ -1,16 +1,9 @@
 @import '../styles/variables';
 
 .container {
-    position: fixed;
-    bottom: 0;
-    height: calc(100vh - 8rem);
-    @include respond(tablet-2) {
-        height: calc(100vh - 9.5rem);
-    }
-    width: 100vw;
-    padding-top: 2rem;
-    overflow: hidden;
+    @include layout;
 
+    padding-top: 3rem;
     background: maroon;
 
     animation: slideIn 300ms ease-out;
