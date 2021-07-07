@@ -3,7 +3,7 @@
 .container {
     @include layout;
 
-    padding-top: 3rem;
+    // padding-top: 3rem;
     background: maroon;
 
     animation: slideIn 300ms ease-out;
