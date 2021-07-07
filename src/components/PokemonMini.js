@@ -38,18 +38,60 @@ const PokemonMini = (props) => {
     const typeListIcons = (input) => {
         let types = [];
 
-        const [bug, dark, dragon, electric, fairy, fighting, fire, flying, ghost, grass, ground, ice, normal, poison, psychic, rock, steel, water] = [Bug, Dark, Dragon, Electric, Fairy, Fighting, Fire, Flying, Ghost, Grass, Ground, Ice, Normal, Poison, Psychic, Rock, Steel, Water];
-
         for (let i = 0; i < input.length; i++) {
             types.push(input[i].type.name);
         };
 
-        return types.map((input, index) =>
+        //set imported SVGs to match pokemon types
+        const typeIcons = types.map(el => {
+            switch(true) {
+                case el === 'fire':
+                    return Fire;
+                case el === 'flying':
+                    return Flying;
+                case el === 'bug':
+                    return Bug;
+                case el === 'dark':
+                    return Dark;
+                case el === 'dragon':
+                    return Dragon;
+                case el === 'electric':
+                    return Electric;
+                case el === 'fairy':
+                    return Fairy;
+                case el === 'fighting':
+                    return Fighting;
+                case el === 'ghost':
+                    return Ghost;
+                case el === 'grass':
+                    return Grass;
+                case el === 'ground':
+                    return Ground;
+                case el === 'ice':
+                    return Ice;
+                case el === 'normal':
+                    return Normal;
+                case el === 'poison':
+                    return Poison;
+                case el === 'psychic':
+                    return Psychic;
+                case el === 'rock':
+                    return Rock;
+                case el === 'steel':
+                    return Steel;
+                case el === 'water':
+                    return Water;
+                default:
+                    return null;
+            }
+        });
+
+        return typeIcons.map((el, index) =>
             <img 
                 key={`pk-type-icon=${index}`}
-                className={`icon img ${input}`}
-                src={eval(input)}
-                alt={`type ${input}`}
+                className={`icon img ${types[index]}`}
+                src={el}
+                alt={`type ${types[index]}`}
                 loading="lazy"
             />
         )

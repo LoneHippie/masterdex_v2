@@ -10,6 +10,7 @@ const Navbar = (props) => {
     const [ searchTerms, setSearchTerms ] = useState(undefined);
     const [ search, setSearch ] = useState('');
 
+    //get array of valid pokemon names
     useEffect(() => {
         (async () => {
             const entries = await pokeapi.get('/pokemon?limit=893');
@@ -25,6 +26,8 @@ const Navbar = (props) => {
 
     return (
         <nav className={classes.nav}>
+
+            <div className={classes.border}>j</div>
 
             <div className={classes.search_container}>
                 <input 

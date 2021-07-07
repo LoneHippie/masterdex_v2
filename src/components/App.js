@@ -9,8 +9,6 @@ import '../styles/base.scss';
 
 const App = () => {
 
-    //fix weird padding-top inconsistency between local and deploy
-
     const [ pokemon, setPokemon ] = useState([]);
     const [ gridActive, setGridActive ] = useState(true);
 
@@ -56,6 +54,18 @@ const App = () => {
                     setPokemon(pokemon => [...pokemon, newPokemon.data]);
                 }    
             }
+        },
+        singleSearch: async (term) => {
+            //disable grid if active and activate reset ref
+            //cleanup of grid DOM is handled in CardGrid
+            searchHandlers.resetPokemon();
+
+            const singlePokemon = await pokeapi.get(`/pokemon/${term}`);
+
+            resetRef.current = false;
+            setGridActive(true);
+
+            setPokemon([singlePokemon]);
         },
         resetPokemon: async () => {
             //reset pokemon state and unmount CardGrid to enable cleanup
