@@ -1,0 +1,74 @@
+//fonts
+$font-sans: 'Source Sans Pro', sans-serif;
+$font-roboto: 'Roboto', sans-serif;
+$font-jp: 'M PLUS 1p', sans-serif;
+
+//general colors
+$color-black: #000000;
+$color-white: #FFFFFF;
+
+$color-pokedex: #ff0000;
+
+$color-focus: #2cfc2c;
+
+//type colors
+$color-fire: #EE8130;
+$color-water: #6390F0;
+$color-electric: #F7D02C;
+$color-grass: #7AC74C;
+$color-ice: #96D9D6;
+$color-fighting: #C22E28;
+$color-poison: #A33EA1;
+$color-ground: #E2BF65;
+$color-flying: #A98FF3;
+$color-psychic: #F95587;
+$color-bug: #A6B91A;
+$color-rock: #B6A136;
+$color-ghost: #735797;
+$color-dragon: #6F35FC;
+$color-dark: #705746;
+$color-steel: #B7B7CE;
+$color-fairy: #D685AD;
+
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone-4 {
+        @media (max-width: 21.5625em) { @content }; //345px
+    }
+    @if $breakpoint == phone-3 {
+        @media (max-width: 23.75em) { @content }; //380px
+    }
+    @if $breakpoint == phone-2 {
+        @media (max-width: 26.25em) { @content }; //420px
+    }
+    @if $breakpoint == phone-1 {
+        @media (max-width: 29.6875em) { @content }; //475px
+    }
+    @if $breakpoint == tablet-3 {
+        @media (max-width: 32.5em) { @content }; //520px
+    }
+    @if $breakpoint == tablet-2 {
+        @media (max-width: 37.5em) { @content }; //600px
+    }
+    @if $breakpoint == tablet-1 {
+        @media (max-width: 51.875em) { @content }; //830px
+    }
+    @if $breakpoint == laptop-2 {
+        @media (max-width: 60.9375em) { @content }; //975px
+    }
+	@if $breakpoint == laptop-1 {
+		@media (max-width: 71.875em) { @content }; //1150px
+    }
+}
+
+@mixin ios($breakpoint) {
+    @if $breakpoint == iphone-8 {
+        @media (width: 23.4375em) { @content }; //375px, iphone 6-8, iphone-x, iphone-11
+    }
+    @if $breakpoint == iphone-plus {
+        @media (width: 25.875em) { @content }; //414px, iPhone-8 plus, iphone-7 plus
+    }
+    @if $breakpoint == se {
+        @media (width: 20em) { @content }; //320px, iphone-SE, iphone 2-5
+    }
+}

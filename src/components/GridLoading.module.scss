@@ -1,0 +1,16 @@
+@import '../styles/variables';
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: rgba($color-pokedex, 0.8);
+
+    & > div {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5rem;
+    }
+}
