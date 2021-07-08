@@ -126,5 +126,53 @@
     &:hover {
         outline: none;
         box-shadow: 0px 0px 10px 5px $color-focus;
+        cursor: pointer;
+    }
+}
+
+.suggestions {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0.75rem;
+    width: 80%;
+    margin-top: -0.6rem;
+    padding-top: 2rem;
+    font-size: 2rem;
+    background: $color-white;
+
+    @include respond(tablet-2) {
+        width: 90%;
+        margin-top: -0.7rem;
+        padding-top: 2.1rem;
+    }
+    @include respond(phone-1) {
+        margin-top: -1rem;
+        padding-top: 2.3rem;
+    }
+
+    // z-index: -1;
+}
+
+.suggestion_item {
+    background: none;
+    border: none;
+    color: $color-focus;
+    font-size: 2rem;
+    text-align: left;
+    padding-bottom: 2rem;
+
+    @include respond(tablet-2) {
+        font-size: 2.3rem;
+    }
+    @include respond(phone-1) {
+        font-size: 3rem;
+    }
+    z-index: 500;
+
+    &:hover,
+    &:focus {
+        background: $color-focus;
+        color: $color-white;
+        cursor: pointer;
     }
 }

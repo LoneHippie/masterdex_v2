@@ -5,10 +5,11 @@ import classes from './Navbar.module.scss';
 
 const Navbar = (props) => {
 
-    const { typeSearch, genSearch } = props;
+    const { typeSearch, genSearch, singleSearch } = props;
 
     const [ searchTerms, setSearchTerms ] = useState(undefined);
     const [ search, setSearch ] = useState('');
+    const [ isFocused, setIsFocused ] = useState(false);
 
     //get array of valid pokemon names
     useEffect(() => {
@@ -24,21 +25,70 @@ const Navbar = (props) => {
         setSearch(value);
     };
 
+    const suggestionsList = () => {
+        const suggestions = searchTerms?.filter(el => el.name.includes(search));
+
+        const suggestionsList = suggestions?.map((el, index) => {
+            if (search !== '') {
+                return (
+                    <button
+                        className={classes.suggestion_item}
+                        key={`result-${index}`}
+                        onClick={(e) => handleSubmit(e)}
+                        value={el.name}
+                    >
+                        {el.name}
+                    </button>
+                )
+            }
+            return null;
+        });
+
+        if (search !== '' && isFocused && suggestions?.length > 0) {
+            return (
+                <div className={classes.suggestions}>
+                    {suggestionsList}
+                </div>
+            )
+        } else {
+            return null;
+        }
+    };
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        
+        if (e.target.value) {
+            setSearch(e.target.value);
+            singleSearch(e.target.value);
+        }
+    }
+
     return (
         <nav className={classes.nav}>
 
             <div className={classes.border}>j</div>
 
-            <div className={classes.search_container}>
+            <form 
+                onSubmit={(e) => handleSubmit(e)}
+                className={classes.search_container}
+            >
                 <input 
                     className={classes.searchbar}
                     type="text"
+                    spellCheck="false"
+                    placeholder="Pokemon"
                     value={search}
                     onChange={(e) => handleChange(e)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setTimeout(() => {
+                        setIsFocused(false)
+                    }, 200)}
                 >
                 </input>
+                {suggestionsList()}
                 <h2>Masterdex v2</h2>
-            </div>
+            </form>
 
             <div className={classes.button_container}>
                 

@@ -108,6 +108,14 @@ const PokemonMini = (props) => {
         };
     };
 
+    const contrastBackground = (type) => {
+        if (type === 'grass' || type === 'water' || type === 'poison' || type === 'fighting' || type === 'dragon' || type === 'dark' || type === 'ghost' || type === 'psychic') {
+            return '#2F4F4F';
+        } else {
+            return '#DCDCDC';
+        };
+    };
+
     //gets gradient based on primary type
     const typeBackground = (type) => {
         switch(true) {
@@ -155,7 +163,8 @@ const PokemonMini = (props) => {
     //type based color styling for all cards
     const typeStyles = {
         text: textColor(primaryType),
-        background: typeBackground(primaryType)
+        background: typeBackground(primaryType),
+        contrastBg: contrastBackground(primaryType)
     };
 
     console.log(`Rendered pokemon ${pokemon.id}`);
@@ -199,7 +208,16 @@ const PokemonMini = (props) => {
             </section>
 
             {
-                openCard ? <PokemonFull pokemon={pokemon} toggleDisplay={toggleDisplay} /> : <></>
+                openCard ? (
+                    <PokemonFull 
+                        pokemon={pokemon} 
+                        moveData={props.moveData}
+                        typeStyles={typeStyles}
+                        toggleDisplay={toggleDisplay} 
+                    /> 
+                ) : (
+                    <></>
+                )
             }
         </>
     )

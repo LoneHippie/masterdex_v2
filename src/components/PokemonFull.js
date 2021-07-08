@@ -5,7 +5,7 @@ import classes from './PokemonFull.module.scss';
 
 const PokemonFull = (props) => {
 
-    const { pokemon, toggleDisplay } = props;
+    const { pokemon, moveData, typeStyles, toggleDisplay } = props;
 
     const [ speciesInfo, setSpeciesInfo ] = useState(undefined);
 

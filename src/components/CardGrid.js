@@ -16,7 +16,7 @@ const CardGrid = (props) => {
             while (gridRef.current.firstChild) {
                 gridRef.current.removeChild(gridRef.current.firstChild);
             }
-        }
+        };
 
         let gridNode = gridRef.current;
 
@@ -29,6 +29,7 @@ const CardGrid = (props) => {
                 <PokemonMini 
                     key={`pokecard-mini-${index}`}
                     pokemon={el}
+                    moveData={props.moveData}
                 />
             )
         }
