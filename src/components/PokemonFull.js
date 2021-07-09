@@ -64,8 +64,11 @@ const PokemonFull = (props) => {
                     showMovesTab ? (
                         <MovesTab 
                             pokemon={pokemon}
-                            typeStyles={typeStyles}
+                            speciesInfo={speciesInfo}
                             moveData={moveData}
+                            typeStyles={typeStyles}
+                            moveTextColor={props.textColor}
+                            moveBackground={props.typeBackground}
                         />
                     ) : (
                         <StatsTab 

@@ -269,6 +269,7 @@ const PokemonMini = (props) => {
                         moveData={props.moveData}
                         typeStyles={typeStyles}
                         typeBackground={typeBackground}
+                        textColor={textColor}
                         toggleDisplay={toggleDisplay} 
                     /> 
                 ) : (
