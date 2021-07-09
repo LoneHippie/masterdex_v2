@@ -34,6 +34,10 @@
     color: $color-black;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .sprite {
@@ -56,6 +60,7 @@
 }
 
 .infoNumber {
+    font-family: $font-pk;
     font-size: 2.75rem;
     @include respond (tablet-1) { font-size: 3.575rem; }
     text-align: right;

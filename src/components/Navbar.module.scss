@@ -84,50 +84,8 @@
         outline: none;
         box-shadow: 0px 0px 10px 5px $color-focus;
     }
-}
 
-.button_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 45%;
-    padding-top: 0.25rem;
-
-    @include respond(tablet-2) {
-        padding-top: 0rem;
-        width: 37.5%;
-    }
-}
-
-.button_group {
-    position: relative; 
-    display: block;
-    // overflow: hidden;
-    font-size: 1.5rem;
-}
-
-.custom_select {
-    appearance: none;
-    padding: 0.25rem 0.5rem;
-    font-size: 2rem;
-    font-family: $font-roboto;
-    font-weight: 500;
-    background-color: $color-white;
-    color: $color-pokedex;
-    border-radius: 8px;
-    border: none;
-
-    @include respond(tablet-2) {
-        padding: 0.5rem 1rem;
-        font-size: 2.5rem;
-    }
-    
-    &:focus,
-    &:hover {
-        outline: none;
-        box-shadow: 0px 0px 10px 5px $color-focus;
-        cursor: pointer;
-    }
+    z-index: 1000;
 }
 
 .suggestions {
@@ -173,6 +131,50 @@
     &:focus {
         background: $color-focus;
         color: $color-white;
+        cursor: pointer;
+    }
+}
+
+.button_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 45%;
+    padding-top: 0.25rem;
+
+    @include respond(tablet-2) {
+        padding-top: 0rem;
+        width: 37.5%;
+    }
+}
+
+.button_group {
+    position: relative; 
+    display: block;
+    // overflow: hidden;
+    font-size: 1.5rem;
+}
+
+.custom_select {
+    appearance: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 2rem;
+    font-family: $font-roboto;
+    font-weight: 500;
+    background-color: $color-white;
+    color: $color-pokedex;
+    border-radius: 8px;
+    border: none;
+
+    @include respond(tablet-2) {
+        padding: 0.5rem 1rem;
+        font-size: 2.5rem;
+    }
+    
+    &:focus,
+    &:hover {
+        outline: none;
+        box-shadow: 0px 0px 10px 5px $color-focus;
         cursor: pointer;
     }
 }

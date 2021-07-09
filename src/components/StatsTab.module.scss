@@ -1,0 +1,82 @@
+@import '../styles/variables';
+
+.stats_tab {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+    padding-bottom: 5rem;
+
+    @include respond(tablet-1) {
+        padding-bottom: 2rem;
+    }
+}
+
+.stat {
+    display: flex;
+    flex-direction: row;
+    font-family: $font-pk;
+
+    cursor: default;
+}
+
+.stat_label {
+    width: 20%;
+    margin-left: 0.75rem;
+    font-size: 1.5rem;
+    @include respond(tablet-1) {
+        font-size: 1.8rem;
+    }
+    @include respond(phone-1) {
+        font-size: 2.2rem;
+    }
+}
+
+.stat_container {
+    width: 70%;
+    height: 2.2rem;
+    border-radius: 8px;
+    overflow: hidden;
+
+    @include respond(tablet-1) {
+        width: 80%;
+        height: 2.5rem;
+        margin-left: 1rem;
+    }
+    @include respond(phone-1) {
+        height: 3rem;
+    }
+}
+
+.stat_bar {
+    height: 2rem;
+
+    @include respond(phone-1) {
+        height: 3rem;
+    }
+
+    animation: statLoad 400ms ease-out;
+}
+
+.stat_value {
+    display: block;
+    text-align: right;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+
+    @include respond(tablet-1) {
+        font-size: 1.8rem;
+    }
+    @include respond(phone-1) {
+        font-size: 2.2rem;
+    }
+}
+
+@keyframes statLoad {
+    0% {
+        width: 0%;
+    }
+    100% {
+        transform: translate(0);
+    }
+}

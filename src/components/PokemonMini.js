@@ -108,6 +108,7 @@ const PokemonMini = (props) => {
         };
     };
 
+    //gets a background to contrast with text color
     const contrastBackground = (type) => {
         if (type === 'grass' || type === 'water' || type === 'poison' || type === 'fighting' || type === 'dragon' || type === 'dark' || type === 'ghost' || type === 'psychic') {
             return '#2F4F4F';
@@ -160,14 +161,68 @@ const PokemonMini = (props) => {
         }
     };
 
+    //gets color of primary type
+    const typeColorSolid = (type) => {
+        switch(true) {
+            case type === 'normal':
+                return "rgba(169, 169, 169)";
+            case type === 'fire':
+                return "rgba(238, 129, 48)";
+            case type === 'water':
+                return "rgba(99, 144, 240)";
+            case type === 'electric':
+                return "rgba(247, 208, 44)";
+            case type === 'grass':
+                return "rgba(122, 199, 76)";
+            case type === 'ice':
+                return "rgba(150, 217, 214)";
+            case type === 'fighting':
+                return "rgba(194, 46, 40)";
+            case type === 'poison':
+                return "rgba(163, 62, 161)";
+            case type === 'ground':
+                return "rgba(226, 191, 101)";
+            case type === 'flying':
+                return "rgba(169, 143, 243)";
+            case type === 'psychic':
+                return "rgba(249, 85, 135)";
+            case type === 'bug':
+                return "rgba(166, 185, 26)";
+            case type === 'rock':
+                return "rgba(182, 161, 54)";
+            case type === 'ghost':
+                return "rgba(115, 87, 151)";
+            case type === 'dragon':
+                return  "rgba(111, 53, 252)";
+            case type === 'dark':
+                return "rgba(112, 87, 70)";
+            case type === 'steel':
+                return "rgba(183, 183, 206)";
+            case type === 'fairy':
+                return "rgba(214, 133, 173)";
+            default:
+                return 'magenta'; //something ovbious in case of an error
+        }
+    };
+
+    //gets gradient with type color and contrast color
+    const doubleGradient = (type) => {
+        let typeColor = typeColorSolid(type)
+        let bgColor = contrastBackground(type);
+
+        let fullGradient = `linear-gradient(122deg, ${bgColor} 0%, ${bgColor} 36.75%, transparent 37%), linear-gradient(${typeColor}, ${typeColor})`;
+
+        return fullGradient;
+    };
+
     //type based color styling for all cards
     const typeStyles = {
         text: textColor(primaryType),
         background: typeBackground(primaryType),
-        contrastBg: contrastBackground(primaryType)
+        contrastBg: contrastBackground(primaryType),
+        typeColor: typeColorSolid(primaryType),
+        doubleGradient: doubleGradient(primaryType)
     };
-
-    console.log(`Rendered pokemon ${pokemon.id}`);
 
     return (
         <>
@@ -213,6 +268,7 @@ const PokemonMini = (props) => {
                         pokemon={pokemon} 
                         moveData={props.moveData}
                         typeStyles={typeStyles}
+                        typeBackground={typeBackground}
                         toggleDisplay={toggleDisplay} 
                     /> 
                 ) : (

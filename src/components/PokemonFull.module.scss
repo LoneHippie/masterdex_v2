@@ -3,11 +3,38 @@
 .container {
     @include layout;
 
+    padding-top: 11rem !important;
+    display: flex;
+    flex-direction: row;
+
+    @include respond(tablet-1) {
+        flex-wrap: wrap;
+    }
+
+    font-family: $font-pk;
+
     background: maroon;
 
     animation: slideIn 300ms ease-out;
 
     z-index: 500;
+}
+
+.detailed_info {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+
+    @include respond(laptop-1) { width: 33% };
+    @include respond(laptop-2) { width: 30% };
+    @include respond(tablet-1) {
+        width: 100%;
+        height: 40%;
+    }
+    @include respond(phone-1) {
+        height: 45%;
+    }
 }
 
 .exit {
@@ -26,11 +53,63 @@
     border: none;
 }
 
-.title {
-    text-align: center;
-    font-size: 5rem;
-    color: $color-white;
-    text-transform: capitalize;
+.tab_toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+
+    cursor: default;
+}
+
+.tab_label {
+    padding: 0rem 1rem;
+    font-size: 2rem;
+    @include respond(tablet-1) {
+        font-size: 2.75rem;
+    }
+}
+
+.switch_label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 10rem; //everything must be 50% of this
+    height: 3rem;
+    background-color: rgba($color-white, 0.4);
+    display: block;
+    border-radius: 100px;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0.15rem;
+        left: 0.15rem;
+        width: 2.7rem;
+        height: 2.7rem;
+        background: $color-white;
+        border-radius: 90px;
+        transition: 0.3s ease-out;
+    }
+}
+
+.switch {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+
+    &:checked + label {
+        background-color: rgba($color-white, 0.4);
+    }
+
+    &:checked + label:after {
+        left: calc(100% - 0.25rem);
+        transform: translateX(-100%);
+    }
+
+    &:active:after {
+        width: 6.5rem;
+    }
 }
 
 @keyframes slideIn {
