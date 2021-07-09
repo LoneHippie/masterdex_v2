@@ -39,12 +39,12 @@ const StatsTab = (props) => {
         for (let i = 0; i < stats.value.length; i++) {
             stats.jsx.push(
                 <div className={classes.stat} key={`stat-${stats.name[i]}`}>
-                    <div className={classes.stat_container} key={`stat-container-${stats.name[i]}`} style={{border: `2px solid ${typeStyles.text}`}}>
-                        <div className={classes.stat_bar} key={`stat-bar-${stats.name[i]}`} id={`stat-bar-${stats.name[i]}-${pokemon.id}`} style={{width: stats.percentage[i], background: typeStyles.contrastBg}}>
-                            <strong className={classes.stat_value} key={`stat-bar-value-${stats.name[i]}`}>{stats.value[i]}</strong>
+                    <div className={classes.stat_container} style={{border: `2px solid ${typeStyles.text}`}}>
+                        <div className={classes.stat_bar} id={`stat-bar-${stats.name[i]}-${pokemon.id}`} style={{width: stats.percentage[i], background: typeStyles.contrastBg}}>
+                            <strong className={classes.stat_value}>{stats.value[i]}</strong>
                         </div>
                     </div>
-                    <label className={classes.stat_label} key={`stat-label-${stats.name[i]}`} htmlFor={`stat-bar-${stats.name[i]}-${pokemon.id}`}>
+                    <label className={classes.stat_label} htmlFor={`stat-bar-${stats.name[i]}-${pokemon.id}`}>
                         {stats.name[i]}
                     </label>
                 </div>

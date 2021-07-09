@@ -77,7 +77,6 @@ const PokemonFull = (props) => {
 
             </section>
 
-
         </section>
     )
 };
