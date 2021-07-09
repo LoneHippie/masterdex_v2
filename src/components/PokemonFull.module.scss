@@ -2,7 +2,7 @@
 
 .container {
     @include layout;
-
+    padding-bottom: 0.5rem !important;
     padding-top: 11rem !important;
     display: flex;
     flex-direction: row;
@@ -12,8 +12,6 @@
     }
 
     font-family: $font-pk;
-
-    background: maroon;
 
     animation: slideIn 300ms ease-out;
 

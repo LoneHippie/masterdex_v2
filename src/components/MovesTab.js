@@ -346,6 +346,27 @@ const MovesTab = (props) => {
                 {movePool(pokemon.moves, 'level-up')}
             </div>
 
+            <span className={classes.grid_title} style={{color: typeStyles.text}}>
+                {movePool(pokemon.moves, 'machine').length === 0 ? '' : 'TM/HM:'}
+            </span>
+            <div className={classes.move_grid}>
+                {movePool(pokemon.moves, 'machine')}
+            </div>
+
+            <span className={classes.grid_title} style={{color: typeStyles.text}}>
+                {movePool(pokemon.moves, 'tutor').length === 0 ? '' : 'Tutor Moves:'}
+            </span>
+            <div className={classes.move_grid}>
+                {movePool(pokemon.moves, 'tutor')}
+            </div>
+
+            <span className={classes.grid_title} style={{color: typeStyles.text}}>
+                {movePool(pokemon.moves, 'egg').length === 0 ? '' : 'Egg Moves:'}
+            </span>
+            <div className={classes.move_grid}>
+                {movePool(pokemon.moves, 'egg')}
+            </div>
+
         </section>
     )
 };
