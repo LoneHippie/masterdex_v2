@@ -4,7 +4,7 @@ import classes from './StatsTab.module.scss';
 
 const StatsTab = (props) => {
 
-    const { pokemon, typeStyles } = props;
+    const { showMovesTab, pokemon, typeStyles } = props;
 
     const statBars = (input) => {
         let stats = {
@@ -55,7 +55,14 @@ const StatsTab = (props) => {
     };
 
     return (
-        <section className={classes.stats_tab} id={`stat-display-${pokemon.id}`} style={{color: typeStyles.text}}>
+        <section 
+            className={classes.stats_tab} 
+            id={`stat-display-${pokemon.id}`} 
+            style={{
+                color: typeStyles.text,
+                display: showMovesTab ? 'none' : 'flex'
+            }}
+        >
             {statBars(pokemon.stats)}
         </section>
     )

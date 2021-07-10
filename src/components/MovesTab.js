@@ -4,7 +4,7 @@ import classes from './MovesTab.module.scss'
 
 const MovesTab = (props) => {
 
-    const { pokemon, speciesInfo, moveData, typeStyles, moveTextColor, moveBackground } = props;
+    const { showMovesTab, pokemon, speciesInfo, moveData, typeStyles, moveTextColor, moveBackground } = props;
 
     const [ pokemonGen, setPokemonGen ] = useState(undefined);
     // const [ moveDetails, setMoveDetails ] = useState(undefined);
@@ -58,7 +58,7 @@ const MovesTab = (props) => {
 
     //change moves.type_id from number to type string value for styling purposes
     function convertToTypeStrings(moves) {
-        moves.map(el => {
+        moves.forEach(el => {
             switch (true) {
                 case el.type_id === 1:
                     return el.type_id = 'normal';
@@ -105,7 +105,7 @@ const MovesTab = (props) => {
     //changes pokemon.moves.move.version_group_details.version_group.name to number equal to gen
     function convertPokemonMoveGenValue(pokemon) {
         pokemon.moves.forEach((move, val) => {
-            move.version_group_details.map((el, index) => {
+            move.version_group_details.forEach((el, index) => {
                 switch(true) { //also deletes items that aren't gen 1-7 since colosseum and xd are not relevant and 8 has no move data
                     case el.version_group.name === 'red-blue':
                         return el.version_group.name = 1;
@@ -208,6 +208,7 @@ const MovesTab = (props) => {
             if (moveData[id].generation_id <= pokemonGen) {
                 return el;
             };
+            return false;
         });
 
         //filter for each learn method argument
@@ -216,7 +217,7 @@ const MovesTab = (props) => {
         //gets genIndex for each lvl move to select the right index for levels in different gens
         if (learnMethod === 'level-up') {
             input.forEach(move => {
-                move.version_group_details.map((el, val) => {
+                move.version_group_details.forEach((el, val) => {
                     switch(true) {
                         case el.move_learn_method.name === 'level-up' && el.version_group.name === parseInt(pokemonGen, 10):
                             return move.genIndex = val;
@@ -321,7 +322,10 @@ const MovesTab = (props) => {
     };
 
     return (
-        <section className={classes.moves_tab}>
+        <section 
+            className={classes.moves_tab} 
+            style={{display: showMovesTab ? 'flex' : 'none'}}
+        >
 
             <div className={classes.gen_select}>
                 <label htmlFor="move-gen-select" style={{display: 'none'}}>Generation select for this pokemon's moves</label>

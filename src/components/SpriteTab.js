@@ -4,7 +4,7 @@ import classes from './SpriteTab.module.scss';
 
 const SpriteTab = (props) => {
 
-    const { pokemon, speciesInfo, typeStyles } = props;
+    const { pokemon, speciesInfo } = props;
 
     //japanese string name for pokemon
     const nameJp = () => {

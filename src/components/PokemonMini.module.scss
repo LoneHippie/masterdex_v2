@@ -12,7 +12,7 @@
         height: 25.85rem;
     }
     @include respond(tablet-1) { //for tablet-1, all size values are 1.3 scale
-        width: 19.5rem;
+        width: 19.2rem;
         height: 30.55rem;
     }
     @include ios(iphone-plus) {
@@ -20,8 +20,8 @@
         height: 23.5rem;
     }
     @include ios(iphone-8) {
-        width: 13.5rem;
-        height: 22rem;
+        width: 12.5rem;
+        height: 20rem;
     }
     @include ios(se) {
         width: 11.25rem;
@@ -31,7 +31,6 @@
     border-radius: 3px;
     box-shadow: -2px 2px 6px rgba($color-black, 0.6);
     font-family: $font-sans;
-    color: $color-black;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 
@@ -62,7 +61,7 @@
 .infoNumber {
     font-family: $font-pk;
     font-size: 2.75rem;
-    @include respond (tablet-1) { font-size: 3.575rem; }
+    @include respond (tablet-1) { font-size: 3.35rem; }
     text-align: right;
     width: 35%;
 }

@@ -13,8 +13,10 @@ const PokemonFull = (props) => {
     const { pokemon, moveData, typeStyles, toggleDisplay } = props;
 
     const [ speciesInfo, setSpeciesInfo ] = useState(undefined);
+    //boolean for toggling display between MovesTab and InfoTab
     const [ showMovesTab, setShowMovesTab ] = useState(false);
 
+    //fetch pokemon species info
     useEffect(() => {
         pokeapi.get(`/pokemon-species/${pokemon.id}`)
             .then(result => {
@@ -60,23 +62,21 @@ const PokemonFull = (props) => {
                     <span className={classes.tab_label}>Moves</span>
                 </div>
 
-                {
-                    showMovesTab ? (
-                        <MovesTab 
-                            pokemon={pokemon}
-                            speciesInfo={speciesInfo}
-                            moveData={moveData}
-                            typeStyles={typeStyles}
-                            moveTextColor={props.textColor}
-                            moveBackground={props.typeBackground}
-                        />
-                    ) : (
-                        <StatsTab 
-                            pokemon={pokemon}
-                            typeStyles={typeStyles}
-                        />
-                    )
-                }
+                <StatsTab
+                    showMovesTab={showMovesTab}
+                    pokemon={pokemon}
+                    typeStyles={typeStyles}
+                />
+
+                <MovesTab
+                    showMovesTab={showMovesTab} 
+                    pokemon={pokemon}
+                    speciesInfo={speciesInfo}
+                    moveData={moveData}
+                    typeStyles={typeStyles}
+                    moveTextColor={props.textColor}
+                    moveBackground={props.typeBackground}
+                />
 
             </section>
 
