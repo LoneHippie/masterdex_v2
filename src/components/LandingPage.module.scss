@@ -11,7 +11,7 @@
 }
 
 .header {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
     padding-top: 3rem;
     margin-bottom: 1rem;
@@ -32,9 +32,9 @@
 
     & > p {
         display: block;
-        font-family: $font-roboto;
+        font-family: $font-pk;
         font-weight: 300;
-        font-size: 3.5rem;
+        font-size: 3.75rem;
         color: $color-white;
 
         &:not(:last-child) {
@@ -43,6 +43,8 @@
 
         & > span {
             color: $color-white;
+            font-size: 4.5rem;
+            text-shadow: 0.5px 0.5px 3px $color-text;
             text-decoration: underline;
             font-weight: 500;
         }
