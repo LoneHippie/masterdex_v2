@@ -14,7 +14,7 @@
     width: 85%;
     margin: 0 auto;
     padding-top: 3rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     border-bottom: 2px solid $color-white;
 
     & > h3 {
@@ -27,9 +27,17 @@
 }
 
 .body {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
-    margin-top: 4rem;
+    padding: 4rem 2.5%;
+    border-right: 2px solid $color-white;
+    border-left: 2px solid $color-white;
+    border-bottom: 2px solid $color-white;
+    background: linear-gradient(to bottom right,
+        rgba($color-text, 0.8),
+        $color-text,
+        $color-text
+    );
 
     & > p {
         display: block;

@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import pokeapi from '../api/pokeapi';
+
+import MoveFull from './MoveFull';
 
 import classes from './MovesTab.module.scss'
 
@@ -7,8 +10,9 @@ const MovesTab = (props) => {
     const { showMovesTab, pokemon, speciesInfo, moveData, typeStyles, moveTextColor, moveBackground } = props;
 
     const [ pokemonGen, setPokemonGen ] = useState(undefined);
-    // const [ moveDetails, setMoveDetails ] = useState(undefined);
-    // const [ showMove, setShowMove ] = useState(false);
+
+    const [ showMove, setShowMove ] = useState(false);
+    const [ moveDetails, setMoveDetails ] = useState(null);
 
     //setting values needed to generate move info
     useEffect(() => {
@@ -17,6 +21,15 @@ const MovesTab = (props) => {
         convertPokemonMoveGenValue(pokemon);
         filterDuplicateMoves(pokemon);
     }, [speciesInfo, moveData, pokemon]);
+
+    //set state details and open modal for move details
+    async function initMoveDetails (el) {
+        setMoveDetails(null);
+        setShowMove(true);
+        
+        const details = await pokeapi.get(`/move/${el.move.name}`)
+        setMoveDetails(details.data);
+    };
 
     //initializes gen state for each pokemon
     function initGen(species) {
@@ -49,12 +62,6 @@ const MovesTab = (props) => {
                 return;
         };
     };
-
-    //function for getting data for moveDetails.js
-    // async function getMoveDetails (input) {
-    //     const details = await pokeapi.get(`/move/${input}`);
-    //     setMoveDetails(details.data);
-    // };
 
     //change moves.type_id from number to type string value for styling purposes
     function convertToTypeStrings(moves) {
@@ -282,13 +289,17 @@ const MovesTab = (props) => {
         let genIndex = (el) => el.genIndex === undefined ? 0 : el.genIndex;
 
         return input.map((el, index) => 
-            <div className={classes.move}
+            <div 
+                className={classes.move}
                 key={`pk-move-${index}`}
                 style={{
                     background: moveBackground(moveTypeColor(el)),
                     color: moveTextColor(moveTypeColor(el)),
                     border: `2px solid ${typeStyles.text}`
-                }}>
+                }}
+                tabIndex={index}
+                onClick={() => initMoveDetails(el)}
+            >
                 <div className={classes.move_info}>
                     <span>
                         lvl {el.version_group_details[genIndex(el)].level_learned_at === 0 ? '-' : el.version_group_details[genIndex(el)].level_learned_at}
@@ -326,6 +337,16 @@ const MovesTab = (props) => {
             className={classes.moves_tab} 
             style={{display: showMovesTab ? 'flex' : 'none'}}
         >
+
+            { 
+                showMove ? (
+                    <MoveFull 
+                        move={moveDetails} 
+                        setShowMove={setShowMove} 
+                        typeStyles={typeStyles}
+                    />
+                ) : null
+            }
 
             <div className={classes.gen_select}>
                 <label htmlFor="move-gen-select" style={{display: 'none'}}>Generation select for this pokemon's moves</label>
