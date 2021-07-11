@@ -67,7 +67,7 @@ const Navbar = (props) => {
     return (
         <nav className={classes.nav}>
 
-            <div className={classes.border}>j</div>
+            <div className={classes.border}></div>
 
             <form 
                 onSubmit={(e) => handleSubmit(e)}

@@ -1,0 +1,50 @@
+@import '../styles/variables';
+
+.landing_container {
+    @include layout();
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    color: $color-text;
+    font-family: $font-pk;
+    background: $color-pokedex;
+}
+
+.header {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 3rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid $color-white;
+
+    & > h3 {
+        color: rgba($color-white, 0.85);
+        font-size: 6rem;
+        font-weight: 300;
+        text-align: center;
+    }
+}
+
+.body {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 4rem;
+
+    & > p {
+        display: block;
+        font-family: $font-roboto;
+        font-weight: 300;
+        font-size: 3.5rem;
+        color: rgba($color-white, 0.8);
+
+        &:not(:last-child) {
+            margin-bottom: 3rem;
+        }
+
+        & > span {
+            color: $color-white;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+    }
+}

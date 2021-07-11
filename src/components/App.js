@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import pokeapi from '../api/pokeapi';
 
 import Navbar from './Navbar';
+import LandingPage from './LandingPage';
 import CardGrid from './CardGrid';
 import GridLoading from './GridLoading';
 
@@ -13,11 +14,13 @@ const App = () => {
 
     const moveData = require('../json-data/moves.json');
 
+    const [ landingPageActive, setLandingPageActive ] = useState(true);
     const [ gridActive, setGridActive ] = useState(true);
 
     const resetRef = useRef(false);
     const filterRef = useRef(undefined);
 
+    //handler functions for filtering pokemon searches
     const searchHandlers = {
         genSearch: async (gen) => {
             //disable grid if active and activate reset ref
@@ -31,8 +34,7 @@ const App = () => {
             setGridActive(true);
 
             for (let i = 0; i < genPokemon.data.pokemon_species.length; i++) {
-                if (resetRef.current) { 
-                    console.log('gen loop stopped');
+                if (resetRef.current) {
                     return; 
                 } //kill loop when resetRef is true 
 
@@ -57,8 +59,7 @@ const App = () => {
             setGridActive(true);
 
             for (let i = 0; i < typePokemon.data.pokemon.length; i++) {
-                if (resetRef.current) { 
-                    console.log('type loop stopped');
+                if (resetRef.current) {
                     return; 
                 } //kill loop when resetRef is true
 
@@ -89,11 +90,31 @@ const App = () => {
                 setGridActive(false);
             };
 
+            //set landing page to false to switch render to grid/loading
+            if (landingPageActive) {
+                setLandingPageActive(false);
+            };
+
             resetRef.current = true;
             filterRef.current = filter;
             setPokemon([]);
         }
-    }
+    };
+
+    const bodyRender = () => {
+        if (landingPageActive) {
+            return <LandingPage />
+        } else {
+            return gridActive ? (
+                <CardGrid 
+                    pokemon={pokemon} 
+                    moveData={moveData} 
+                />
+            ) : (
+                <GridLoading />
+            )
+        }
+    };
 
     return (
         <>
@@ -102,16 +123,7 @@ const App = () => {
                 genSearch={searchHandlers.genSearch}
                 singleSearch={searchHandlers.singleSearch}
             />
-            {
-                gridActive ? (
-                    <CardGrid 
-                        pokemon={pokemon}
-                        moveData={moveData}
-                    />
-                ) : (
-                    <GridLoading />
-                )
-            }
+            { bodyRender() }
         </>
     )
 };
