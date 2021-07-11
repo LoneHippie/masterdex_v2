@@ -66,8 +66,8 @@ const App = () => {
                 //get next pokemon by id and push to state
                 const newPokemon = await pokeapi.get(`/pokemon/${typePokemon.data.pokemon[i].pokemon.url.slice(34).slice(0, -1)}`);
                 
-                //final check before push to state incase of filter change
-                if (filterRef.current === 'type') {
+                //final check before push to state incase of filter change or pokemon outside of standard dex
+                if (filterRef.current === 'type' && newPokemon.data.id < 999) {
                     setPokemon(pokemon => [...pokemon, newPokemon.data]);
                 } 
             };
