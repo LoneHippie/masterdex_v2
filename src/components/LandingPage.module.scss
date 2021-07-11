@@ -35,7 +35,7 @@
         font-family: $font-roboto;
         font-weight: 300;
         font-size: 3.5rem;
-        color: rgba($color-white, 0.8);
+        color: $color-white;
 
         &:not(:last-child) {
             margin-bottom: 3rem;
