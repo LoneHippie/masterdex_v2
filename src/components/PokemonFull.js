@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import pokeapi from '../api/pokeapi';
 
+import EvolutionTab from './EvolutionTab';
+
 import InfoTab from './InfoTab';
 import SpriteTab from './SpriteTab';
 import StatsTab from './StatsTab';
@@ -16,11 +18,21 @@ const PokemonFull = (props) => {
     //boolean for toggling display between MovesTab and InfoTab
     const [ showMovesTab, setShowMovesTab ] = useState(false);
 
-    //fetch pokemon species info
+    const [ evolutions, setEvolutions ] = useState(undefined);
+    const [ showEvolutionChain, setShowEvolutionChain ] = useState(false);
+
+    //fetch pokemon species info and evolution chain
     useEffect(() => {
         pokeapi.get(`/pokemon-species/${pokemon.id}`)
             .then(result => {
                 setSpeciesInfo(result.data);
+                return result.data;
+            })
+            .then(species => {
+                pokeapi.get(`${species.evolution_chain.url.slice(25)}`)
+                    .then(result => {
+                        setEvolutions(result.data.chain);
+                    })
             });
     }, [pokemon.id]);
 
@@ -35,6 +47,16 @@ const PokemonFull = (props) => {
                 onClick={() => toggleDisplay()}
             >X</button>
 
+            {
+                showEvolutionChain ? (
+                    <EvolutionTab 
+                        evolutions={evolutions}
+                        typeStyles={typeStyles}
+                        setShowEvolutionChain={setShowEvolutionChain}
+                    />
+                ) : null
+            }
+
             <InfoTab 
                 pokemon={pokemon}
                 speciesInfo={speciesInfo}
@@ -46,6 +68,8 @@ const PokemonFull = (props) => {
                 pokemon={pokemon}
                 speciesInfo={speciesInfo}
                 typeStyles={typeStyles}
+                setShowEvolutionChain={setShowEvolutionChain}
+                evolutions={evolutions}
             />
 
             <section className={classes.detailed_info}>

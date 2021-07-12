@@ -31,9 +31,7 @@
     & > button {
         display: inline-block;
         border-radius: 20px;
-        padding: 0.5rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding: 0.8rem 1rem;
         font-family: $font-pk;
         font-size: 2.5rem;
         width: 60%;
@@ -50,6 +48,8 @@
         -ms-user-select: none;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
+
+        animation: fadeIn 300ms ease-out;
 
         &:hover {
             filter: contrast(130%);
@@ -104,5 +104,15 @@
     }
     80% {
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-8rem);
+    }
+    100% {
+        transform: translate(0);
     }
 }

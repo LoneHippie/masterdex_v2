@@ -51,6 +51,10 @@
     background: transparent;
     border: none;
 
+    &:hover {
+        cursor: pointer;
+    }
+
     z-index: 1000;
 }
 
