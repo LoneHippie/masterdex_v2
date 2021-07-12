@@ -47,8 +47,11 @@
 
     font-size: 4rem;
     color: $color-white;
+    text-shadow: 0px 0px 4px $color-text;
     background: transparent;
     border: none;
+
+    z-index: 1000;
 }
 
 .tab_toggle {

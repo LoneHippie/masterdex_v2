@@ -4,7 +4,7 @@ import classes from './SpriteTab.module.scss';
 
 const SpriteTab = (props) => {
 
-    const { pokemon, speciesInfo } = props;
+    const { pokemon, speciesInfo, typeStyles } = props;
 
     //japanese string name for pokemon
     const nameJp = () => {
@@ -20,9 +20,15 @@ const SpriteTab = (props) => {
     return (
         <div className={classes.visual_container}>
 
-            {/* <div className={classes.name} style={{color: typeStyles.text}}>
-                {pokemon.name}
-            </div> */}
+            <div className={classes.evolution_container} >
+                <button
+                    style={{
+                        background: typeStyles.contrastBg,
+                        color: typeStyles.text,
+                        border: `2px solid ${typeStyles.text}`
+                    }}
+                >Evolution Chain &rarr;</button>
+            </div>
 
             <div className={classes.name_jp} style={{color: speciesInfo?.color.name}}>
                 {nameJp()}

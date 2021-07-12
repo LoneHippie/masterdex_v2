@@ -1,6 +1,7 @@
 @import '../styles/variables';
 
 .visual_container {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 45%;
@@ -15,20 +16,44 @@
     }
 }
 
-.name {
-    height: 10%;
-    margin: 0 auto;
-    text-align: center;
-    text-transform: capitalize;
-    font-family: $font-sans;
-    font-size: 5rem;
-    letter-spacing: 1.5px;
-    @include respond(tablet-1) {
-        height: 5%;
-        order: 1;
-        letter-spacing: 0.2rem;
-        line-height: 0.9;
-        transform: translateY(-1.5rem);
+.evolution_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 15%;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    & > button {
+        display: inline-block;
+        border-radius: 20px;
+        padding: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-family: $font-pk;
+        font-size: 2.5rem;
+        width: 60%;
+        @include respond(phone-1) {
+            width: 70%;
+        }
+
+        cursor: pointer;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+
+        &:hover {
+            filter: contrast(130%);
+        }
     }
 }
 
@@ -48,9 +73,15 @@
 .sprite {
     height: 90%;
     width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     image-rendering: pixelated;
 
+    transform: translateY(-3.5%);
+
     @include respond(tablet-1) {
+        transform: translateY(-1.5%);
         height: 87.5%;
         order: 0;
     }
