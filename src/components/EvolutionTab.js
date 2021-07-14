@@ -72,14 +72,14 @@ const EvolutionTab = (props) => {
                                     return el.location?.name ? <span key={`location-${index}`}>{el.location.name}</span> : null
                                 })
                             }
-                            <span>&darr;</span>
+                            <strong>&darr;</strong>
                         </div>
                     )
                 } else {
                     return (
                         <div className={classes.step_method}>
                             <span>{methodString}</span>
-                            <span>&darr;</span>
+                            <strong>&darr;</strong>
                         </div>
                     )
                 }

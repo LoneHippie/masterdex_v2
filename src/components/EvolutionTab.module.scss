@@ -67,12 +67,17 @@
     align-items: center;
     justify-content: center;
 
-    // transform: translateY(40%);
+    transform: translateY(10%);
 
     & > span {
        text-align: center;
        font-size: 3.5rem;
        text-transform: capitalize; 
+    }
+
+    & > strong {
+        text-align: center;
+        font-size: 6rem;
     }
 }
 
