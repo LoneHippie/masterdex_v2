@@ -17,10 +17,10 @@
 
     @include respond(tablet-1) {
         padding-top: 0rem;
-        transform: translateY(43%);
+        transform: translateY(25%);
         left: 0;
         width: 100%;
-        height: 70%;
+        height: 80%;
         border-radius: 20px 20px 0px 0px;
 
         animation: slideBottom 300ms ease-out;
@@ -38,12 +38,12 @@
 
 .step {
     display: flex;
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
 }
 
 .step_pokemon {
-    width: 60%;
+    width: 55%;
 
     & > img {
         image-rendering: pixelated;
@@ -61,7 +61,7 @@
 }
 
 .step_method {
-    width: 40%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,7 +95,7 @@
         height: 100%;
     }
     100% {
-        height: 65%;
+        height: 80%;
     }
 }
 

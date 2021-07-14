@@ -10,71 +10,106 @@ const EvolutionTab = (props) => {
 
     const evolutionSteps = () => {
 
-        const jsx = [];
+        const steps = [];
 
-        const step = (evo) => {
-            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${evo.species.url.slice(42).slice(0, -1)}.png`;
-
-            let trigger = evo.evolves_to.length ? evo.evolves_to[0].evolution_details[0].trigger.name : null;
-
-            // console.log(trigger);
-
+        const step = (details, species) => {
+            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${species.url.slice(42).slice(0, -1)}.png`;
+            
             const stepMethod = () => {
+                //makes sure this will only run if there are details for the next pokemon
+                if (!details) { return null };
+
+                let trigger = details[0].trigger.name;
                 let methodString;
 
                 if (trigger === 'level-up') {
-                    if (evo.evolves_to[0].evolution_details[0].min_level === null) {
-                        methodString = `Happiness ${evo.evolves_to[0].evolution_details[0].min_happiness}`;
-                    } else {
-                        methodString = `level ${evo.evolves_to[0].evolution_details[0].min_level}`;
+                    switch(true) {
+                        case details[0].min_level !== null:
+                            if (details[0].time_of_day) {
+                                methodString = `level ${details[0].min_level}+ at ${details[0].time_of_day}`;
+                            } else {
+                                methodString = `level ${details[0].min_level}`;
+                            };
+                            break;
+                        case details[0].min_happiness !== null:
+                            methodString = `${details[0].min_happiness}+ happiness`;
+                            break;
+                        case details[0].min_beauty !== null:
+                            methodString = `${details[0].min_beauty}+ beauty`;
+                            break;
+                        case details[0].known_move !== null:
+                            methodString = `knows ${details[0].known_move.name}`;
+                            break;
+                        case details[0].held_item !== null:
+                            if (details[0].time_of_day) {
+                                methodString = `level up holding ${details[0].held_item.name} at ${details[0].time_of_day}`;
+                            } else {
+                                methodString = `level up holding ${details[0].held_item.name}`;
+                            };
+                            break;
+                        case details[0].location !== null:
+                            methodString = 'locations';
+                            break;
+                        default:
+                            return null;
                     }
                 } else if (trigger === 'use-item') {
-                    methodString = evo.evolves_to[0].evolution_details[0].item.name;
-                } else {
-                    methodString = false;
+                    methodString = details[0].item ? details[0].item.name : 'unlisted item';
                 }
 
-                if (methodString !== false) {
+                if (methodString === 'locations') {
+                    return (
+                        <div className={classes.step_method}>
+                            <span>Level up at:</span>
+                            {details?.map(el => el.location?.name ? <span>{el.location.name}</span> : null)}
+                            <span>&darr;</span>
+                        </div>
+                    )
+                } else {
                     return (
                         <div className={classes.step_method}>
                             <span>{methodString}</span>
                             <span>&darr;</span>
                         </div>
                     )
-                } else {
-                    return null;
                 }
             };
 
             return (
                 <div 
                     className={classes.step} 
-                    key={`pokemon-${evo.species.name}`}
+                    key={`pokemon-${species.name}`}
                 >
                     <div className={classes.step_pokemon}>
                         <img 
-                            alt={evo.species.name}
+                            alt=''
                             src={imageUrl}
                         />
-                        <h4>{evo.species.name}</h4>
+                        <h4>{species.name}</h4>
                     </div>
                     {stepMethod()}
                 </div>
             )
-        }
-
-        jsx.push(step(evolutions));
-
-        if (evolutions.evolves_to.length) {
-            jsx.push(step(evolutions.evolves_to[0]));
-
-            if (evolutions.evolves_to[0].evolves_to.length) {
-                jsx.push(step(evolutions.evolves_to[0].evolves_to[0]));
-            }
         };
 
-        return jsx;
-    }
+        function getNextLink({ evolves_to, species }) {
+            if (!evolves_to.length) {
+                steps.push(
+                    step(null, species)
+                );
+                return
+            };
+
+            steps.push(
+                step(evolves_to[0].evolution_details, species)
+            );
+    
+            return evolves_to ? getNextLink(evolves_to[0]) : {};
+        };
+
+        getNextLink(evolutions);
+        return steps;
+    };
 
     return (
         <>
