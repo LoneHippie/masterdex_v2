@@ -55,13 +55,23 @@ const EvolutionTab = (props) => {
                     }
                 } else if (trigger === 'use-item') {
                     methodString = details[0].item ? details[0].item.name : 'unlisted item';
+                } else if (trigger === 'trade') {
+                    if (details[0].held_item) {
+                        methodString = `trade while holding ${details[0].held_item.name}`;
+                    } else {
+                        methodString = 'trade';
+                    };
                 }
 
                 if (methodString === 'locations') {
                     return (
                         <div className={classes.step_method}>
                             <span>Level up at:</span>
-                            {details?.map(el => el.location?.name ? <span>{el.location.name}</span> : null)}
+                            {
+                                details?.map((el, index) => {
+                                    return el.location?.name ? <span key={`location-${index}`}>{el.location.name}</span> : null
+                                })
+                            }
                             <span>&darr;</span>
                         </div>
                     )
