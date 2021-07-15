@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import AbilityFull from './AbilityFull';
 
 import classes from './InfoTab.module.scss';
 
 const InfoTab = (props) => {
 
     const { pokemon, typeStyles, typeBackground } = props;
+
+    const [ showAbility, setShowAbility ] = useState(false);
+    const [ abilityDetails, setAbilityDetails ] = useState(null);
 
     const typeListText = (input) => {
         // const typeName = pokemon.types[0].type.name;
@@ -28,23 +33,29 @@ const InfoTab = (props) => {
     };
 
     const abilityListText = (input) => {
-        let abilities = [];
 
-        for (let i = 0; i < input.length; i++) {
-            abilities.push(input[i].ability.name);
-        };
-
-        return abilities.map((el, index) => 
+        return input.map((el, index) => 
             <div className={classes.ability_flex} key={`pk-ability-${index}`} >
                 <div 
                     className={classes.ability} 
-                    id={`ability-${el}-${index}`}
-                    // onClick={openAbilityDescription}
+                    id={`${el.ability.name}`}
+                    onClick={async() => {
+                        setAbilityDetails(null);
+                        setShowAbility(true);
+
+                        fetch(el.ability.url)
+                            .then(res => res.json())
+                            .then(details => setAbilityDetails(details))
+                            .catch(err => {
+                                console.log(err);
+                                setAbilityDetails(null);
+                            });
+                    }}
                     style={{
                         background: typeStyles.contrastBg,
                         border: `2px solid ${typeStyles.text}`
                     }}>
-                    {el}
+                    {el.ability.name}
                 </div>
             </div>
         );
@@ -52,6 +63,16 @@ const InfoTab = (props) => {
 
     return (
         <div className={classes.info_container} style={{color: typeStyles.text}}>
+
+            {
+                showAbility ? (
+                    <AbilityFull 
+                        ability={abilityDetails}
+                        typeStyles={typeStyles}
+                        setShowAbility={setShowAbility}
+                    />
+                ) : null
+            }
 
             <div className="pokecard-full__general-info--id">
                 {`Game ID: #${pokemon.id}`}

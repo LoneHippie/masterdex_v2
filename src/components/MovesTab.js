@@ -319,15 +319,6 @@ const MovesTab = (props) => {
                         {moveCategory(el)}
                     </span>
                 </div>
-                {/* <MoveDetails 
-                    move={el}
-                    moveDetails={moveDetails}
-                    renderDetails={renderDetails}
-                    pokemonIndex={pokemonIndex}
-                    textColor={textColor}
-                    getContrastBg={getContrastBg}
-                    typeName={typeName}
-                /> */}
             </div>
         );
     };
