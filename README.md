@@ -1,6 +1,6 @@
 # What is Masterdex?
 
-Masterdex v2 is a virtual Pokedex in the form of a progressive web app that contains highly detailed data on all Pokemon from the game series up until the 8th generation. This is a remake of my first ever React project, [Masterdex](https://github.com/LoneHippie/masterdex).\
+Masterdex v2 is a virtual Pokedex in the form of a progressive web app that contains highly detailed data on all Pokemon from the game series up until the 8th generation. This is a remake of my first ever React project, [Masterdex](https://github.com/LoneHippie/masterdex).
 
 Made with React and Sass, all Pokemon data taken from [pokeapi](https://pokeapi.co/).
 
