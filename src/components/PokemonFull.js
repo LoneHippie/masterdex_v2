@@ -39,7 +39,7 @@ const PokemonFull = (props) => {
     return (
         <section 
             className={classes.container}
-            style={{background: window.innerWidth === 414 || window.innerWidth === 375 || window.innerWidth === 320 ? typeStyles.background : typeStyles.doubleGradient}}
+            style={{background: window.innerWidth === 414 || window.innerWidth === 375 || window.innerWidth === 320 ? typeStyles.typeColor : typeStyles.doubleGradient}}
         >
 
             <button 

@@ -42,6 +42,9 @@ $color-fairy: #D685AD;
     @include respond(tablet-2) {
         padding-top: 14rem;
     }
+    @include ios(iphone-8) {
+        padding-top: 12rem;
+    }
     width: 100vw;
     overflow: hidden;
 }
@@ -78,13 +81,13 @@ $color-fairy: #D685AD;
 }
 
 @mixin ios($breakpoint) {
+    @if $breakpoint == se {
+        @media (width: 20em) { @content }; //320px, iphone-SE, iphone 2-5
+    }
     @if $breakpoint == iphone-8 {
         @media (width: 23.4375em) { @content }; //375px, iphone 6-8, iphone-x, iphone-11
     }
     @if $breakpoint == iphone-plus {
         @media (width: 25.875em) { @content }; //414px, iPhone-8 plus, iphone-7 plus
-    }
-    @if $breakpoint == se {
-        @media (width: 20em) { @content }; //320px, iphone-SE, iphone 2-5
     }
 }

@@ -21,6 +21,10 @@
     @include respond(tablet-2) {
         height: 12.25rem;
     }
+    
+    @include ios(iphone-8) {
+        height: 10.25rem;
+    }
 }
 
 .border {
@@ -43,6 +47,10 @@
 
     @include respond(tablet-2) {
         height: 12rem;
+    }
+
+    @include ios(iphone-8) {
+        height: 10rem;
     }
 }
 

@@ -18,6 +18,9 @@
     width: 85%;
     margin: 0 auto;
     padding-top: 3rem;
+    @include ios(iphone-8) {
+        padding-top: 0;
+    }
     padding-bottom: 1rem;
     border-bottom: 2px solid $color-white;
 

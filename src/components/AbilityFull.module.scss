@@ -37,6 +37,11 @@
         height: 48%;
     }
 
+    @include ios(iphone-8) {
+        top: 15%;
+        height: 46%;
+    }
+
     z-index: 2000;
 }
 

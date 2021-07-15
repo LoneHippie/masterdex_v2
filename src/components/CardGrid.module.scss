@@ -23,6 +23,10 @@
     margin: 0 auto;
     // padding: 0 1.5rem;
 
+    @include ios(iphone-8) {
+        grid-gap: 0.5rem;
+    }
+
     background: $color-pokedex;
 
     z-index: -1;
